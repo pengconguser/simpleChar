@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CategoryMapper">
+    <select id="getAll" parameterType="Entity.Category" resultMap="BaseResultMap">
+        select * from category
+    </select>
+
+    <resultMap id="BaseResultMap" type="Entity.Category">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
+    <update id="updateCategoryBase" parameterType="Entity.Category">
+        update category
+        <set>
+            <if test="name !=null">name=#{name},</if>
+            <if test="count !=null">count=#{count},</if>
+        </set>
+        where id =#{id}
+    </update>
+</mapper>
+

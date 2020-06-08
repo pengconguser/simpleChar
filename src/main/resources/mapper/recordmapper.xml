@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RecordMapper">
+    <select id="getRecordByInt"  resultType="Entity.Record">
+        SELECT *
+        FROM record
+        ORDER BY id
+        DESC
+        limit
+            <if test="start != null">#{start}</if>
+            <if test="count != null">#{count}</if>
+    </select>
+
+    <select id="getRecordByDate"  resultType="Entity.Record" >
+        select * from record
+        <where>
+            <if test="start != null">date&gt;=#{start}</if>
+            <if test="end != null">
+                and date   &lt;= #{end}
+            </if>
+        </where>
+    </select>
+
+    <select id="getRecordByDay" resultType="Entity.Record">
+        select * from record where date = #{day}
+    </select>
+
+    <update id="updateRecordBase" parameterType="Entity.Record">
+        update record
+        <set>
+            <if test="value !=null">value=#{value},</if>
+            <if test="type !=null">type=#{type},</if>
+        </set>
+        where id =#{id}
+    </update>
+</mapper>
+

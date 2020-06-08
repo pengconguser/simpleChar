@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 在控制台输出执行的sql语句 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+    <environments default="mysql">
+        <environment id="mysql" >
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.sqlite.JDBC"/>
+                <property name="url" value="jdbc:sqlite:DB/char.db"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/configmapper.xml"/>
+        <mapper resource="mapper/categorymapper.xml"/>
+        <mapper resource="mapper/recordmapper.xml"/>
+    </mappers>
+
+</configuration>
